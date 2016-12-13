@@ -1,0 +1,62 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lrlopez
+ * Date: 13/12/16
+ * Time: 13:24
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity()
+ */
+class Grupo
+{
+    /**
+     * @ORM\Id()
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue()
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string")
+     * @var string
+     */
+    private $descripcion;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    private $aula;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    private $planta;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Estudiante", mappedBy="grupo")
+     * @var Estudiante[]
+     */
+    private $estudiantes;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Profesor",inversedBy="tutoria")
+     * @var Profesor
+     */
+    private $tutor;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Profesor", inversedBy="grupos")
+     * @var Profesor[]
+     */
+    private $profesores;
+
+}

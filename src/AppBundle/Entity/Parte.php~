@@ -1,0 +1,56 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lrlopez
+ * Date: 13/12/16
+ * Time: 13:24
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity()
+ */
+class Parte
+{
+    /**
+     * @ORM\Id()
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue()
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="date")
+     * @var \DateTime
+     */
+    private $fecha;
+
+    /**
+     * @ORM\Column(type="boolean")
+     * @var bool
+     */
+    private $avisado;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     * @var string
+     */
+    private $observacion;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Profesor", inversedBy="partes")
+     * @ORM\JoinColumn(nullable=false)
+     * @var Profesor
+     */
+    private $profesor;
+    /**
+     * @ORM\ManyToOne(targetEntity="Estudiante", inversedBy="partes")
+     * @ORM\JoinColumn(nullable=false)
+     * @var Estudiante
+     */
+    private $estudiante;
+}
